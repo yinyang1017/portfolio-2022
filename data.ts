@@ -6,14 +6,17 @@ import {
   FaFacebookF,
   FaRegListAlt,
   FaRegNewspaper,
+  FaSkype,
+  FaTelegram,
   FaRegUser,
 } from "react-icons/fa"
 import { FiSend } from "react-icons/fi"
 import { MdComputer, MdDashboard } from "react-icons/md"
 import {
   SiFigma,
-  SiFirebase,
-  SiFiverr,
+  SiWebdriverio,
+  SiWeb3Dotjs,
+  SiChatbot,
   SiNextdotjs,
   SiNodedotjs,
 } from "react-icons/si"
@@ -53,12 +56,12 @@ export const menus: MenuData[] = [
     Icon: FaEye,
     Component: Works,
   },
-  {
-    id: 4,
-    label: "blog",
-    Icon: FaRegNewspaper,
-    Component: DevBlogs,
-  },
+  // {
+  //   id: 4,
+  //   label: "blog",
+  //   Icon: FaRegNewspaper,
+  //   Component: DevBlogs,
+  // },
   {
     id: 5,
     label: "stats",
@@ -81,53 +84,37 @@ export const menus: MenuData[] = [
 
 export const socialMedia: SocialMedia[] = [
   {
-    id: 1,
-    Icon: FaDev,
-    label: "Dev",
-    logoColor: "black",
-    mediaUrl: "https://www.dev.to/arafat4693",
-    info: "Follow me and read my articles on Dev.to",
-  },
-  {
     id: 2,
-    Icon: FaFacebookF,
-    label: "Facebook",
+    Icon: FaTelegram,
+    label: "Telegram",
     logoColor: "#3b5998",
-    mediaUrl: "https://www.facebook.com/md.sunny.58910049",
-    info: "Follow me on Facebook",
+    mediaUrl: "https://t.me/x2creation",
+    info: "Chat with me on Telegram",
   },
   {
     id: 3,
     Icon: AiOutlineGithub,
     label: "Github",
     logoColor: "#171515",
-    mediaUrl: "https://www.github.com/arafat4693",
+    mediaUrl: "https://www.github.com/yinyangwarrior",
     info: "Star my projects on Github",
   },
   {
     id: 4,
-    Icon: AiFillLinkedin,
-    label: "Linkedin",
+    Icon: FaSkype,
+    label: "Skype",
     logoColor: "#0072b1",
-    mediaUrl: "https://www.linkedin.com/in/arafat-freelancer",
-    info: "Let's connect on Linkedin",
+    mediaUrl: "https://join.skype.com/qUdyrGozIvWe",
+    info: "Let's connect on Skype",
   },
   {
     id: 5,
     Icon: FaDiscord,
     label: "Discord",
     logoColor: "#5865f2",
-    mediaUrl: "https://www.discord.com",
-    info: "Let's chat on Discord. My username - Tyrant#4185",
-  },
-  {
-    id: 6,
-    Icon: SiFiverr,
-    label: "Fiverr",
-    logoColor: "#00b22d",
-    mediaUrl: "https://www.fiverr.com/sunnyislam990",
-    info: "Hire me on fiverr as freelancer",
-  },
+    mediaUrl: "https://discord.gg/vVk6qqs52r",
+    info: "Let's chat on Discord.",
+  }
 ]
 
 export const services: ServiceData[] = [
@@ -154,10 +141,24 @@ export const services: ServiceData[] = [
   },
   {
     id: 4,
-    title: "Firebase",
-    Icon: SiFirebase,
+    title: "Web3.0 Integration",
+    Icon: SiWeb3Dotjs,
     description:
-      "Fully functional firebase app with authentication, firestore, storage, etc.",
+      "Web3.0 Integration with NFT, Solidity, etc.",
+  },
+  {
+    id: 5,
+    title: "ChatGPT Integration",
+    Icon: SiChatbot,
+    description:
+      "ChatGPT and Natural Language Processing using LangChain",
+  },
+  {
+    id: 6,
+    title: "Web Scrapping",
+    Icon: SiWebdriverio,
+    description:
+      "Python BeautifulSoup4 and Selenium with Puppeteer",
   },
 ]
 

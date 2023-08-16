@@ -1,19 +1,21 @@
-import Particles from "react-tsparticles"
-import { loadFull } from "tsparticles"
-import { useCallback } from "react"
-import type { Engine, Container } from "tsparticles-engine"
+import Particles from "react-tsparticles";
+import { loadFull } from "tsparticles";
+import { loadPolygonMaskPlugin } from "tsparticles-plugin-polygon-mask";
+import { useCallback } from "react";
+import type { Engine, Container } from "tsparticles-engine";
 
 const Background = () => {
   const particlesInit = useCallback(async (engine: Engine) => {
-    await loadFull(engine)
-  }, [])
+    await loadFull(engine);
+    await loadPolygonMaskPlugin(engine);
+  }, []);
 
   const particlesLoaded = useCallback(
     async (container: Container | undefined) => {
       // await console.log(container)
     },
     []
-  )
+  );
 
   return (
     <Particles
@@ -21,78 +23,91 @@ const Background = () => {
       init={particlesInit}
       loaded={particlesLoaded}
       options={{
-        background: {
-          color: {
-            value: "#0b0f17",
-          },
-        },
-        fpsLimit: 160,
+        pauseOnBlur: false,
         interactivity: {
           events: {
-            onClick: {
-              enable: false,
-            },
             onHover: {
               enable: true,
-              mode: "repulse",
+              mode: "bubble",
             },
             resize: true,
           },
           modes: {
-            push: {
-              quantity: 4,
-            },
-            repulse: {
-              distance: 200,
-              duration: 0.4,
+            bubble: {
+              distance: 40,
+              duration: 2,
+              opacity: 8,
+              size: 6,
+              speed: 3,
             },
           },
         },
         particles: {
           color: {
-            value: "#f59e0b",
+            value: ["#4285f4", "#34A853", "#FBBC05", "#EA4335"],
           },
           links: {
-            color: "#f59e0b",
-            distance: 150,
+            color: "random",
+            distance: 45,
             enable: true,
-            opacity: 0.5,
+            opacity: 0.8,
             width: 1,
-          },
-          collisions: {
-            enable: true,
           },
           move: {
             direction: "none",
             enable: true,
-            outModes: {
-              default: "bounce",
-            },
-            random: false,
-            speed: 0.6,
-            straight: false,
+            outMode: "bounce",
+            speed: 1,
           },
           number: {
-            density: {
-              enable: true,
-              area: 800,
-            },
-            value: 20,
+            value: 200,
           },
           opacity: {
-            value: 0.5,
+            animation: {
+              enable: true,
+              speed: 2,
+              sync: false,
+            },
+            value: { min: 0.3, max: 0.8 },
           },
           shape: {
             type: "circle",
           },
           size: {
-            value: { min: 1, max: 2 },
+            value: 1,
           },
         },
-        detectRetina: true,
+        polygon: {
+          draw: {
+            enable: true,
+            lineColor: "rgba(255,255,255,0.2)",
+            lineWidth: 0.5,
+          },
+          enable: true,
+          move: {
+            radius: 5,
+          },
+          position: {
+            x: 30,
+            y: 10,
+          },
+          inline: {
+            arrangement: "equidistant",
+          },
+          scale: 1.5,
+          type: "inline",
+          url: "https://particles.js.org/images/google.svg",
+        },
+        background: {
+          color: "#000000",
+          image: "",
+          position: "50% 50%",
+          repeat: "no-repeat",
+          size: "cover",
+        },
       }}
     />
-  )
-}
+  );
+};
 
-export default Background
+export default Background;

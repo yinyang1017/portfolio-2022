@@ -1,31 +1,31 @@
-import { ReactiveVar, useQuery, useReactiveVar } from "@apollo/client"
-import Image from "next/image"
+import { ReactiveVar, useQuery, useReactiveVar } from "@apollo/client";
+import Image from "next/image";
 import {
   Dispatch,
   SetStateAction,
   MouseEvent,
   useState,
   useEffect,
-} from "react"
-import { IoMdClose } from "react-icons/io"
-import { menus, socialMedia } from "../data"
-import SideMenuBtn from "./SideMenuBtn"
-import profileOperations from "../graphqlOperations/profile"
-import { partOfProfile, ProfileData } from "../types"
-import { currentMenu } from "../apollo-client"
+} from "react";
+import { IoMdClose } from "react-icons/io";
+import { menus, socialMedia } from "../data";
+import SideMenuBtn from "./SideMenuBtn";
+import profileOperations from "../graphqlOperations/profile";
+import { partOfProfile, ProfileData } from "../types";
+import { currentMenu } from "../apollo-client";
 
 interface Props {
-  sideMenu: boolean
-  showMenu: ReactiveVar<boolean>
-  profile: ProfileData
+  sideMenu: boolean;
+  showMenu: ReactiveVar<boolean>;
+  profile: ProfileData;
 }
 
 export default function SideMenuLb({ sideMenu, showMenu, profile }: Props) {
-  const menuId = useReactiveVar(currentMenu)
+  const menuId = useReactiveVar(currentMenu);
 
   function closeLb(e: MouseEvent): void {
     if ((e.target as Element).classList.contains("lb")) {
-      showMenu(false)
+      showMenu(false);
     }
   }
 
@@ -97,10 +97,10 @@ export default function SideMenuLb({ sideMenu, showMenu, profile }: Props) {
           </a>
 
           <p className="text-center text-gray-500 text-xl mt-16 mb-10">
-            {"sunny's"} portfolio © 2022.
+            Mavericks © 2022.
           </p>
         </div>
       </main>
     </section>
-  )
+  );
 }

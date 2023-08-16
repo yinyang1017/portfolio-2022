@@ -1,19 +1,19 @@
-import { AiFillLinkedin } from "react-icons/ai"
-import { BsFillCloudArrowDownFill } from "react-icons/bs"
-import { ProfileData } from "../types"
-import MediaIcons from "./MediaIcons"
-import MyLink from "./MyLink"
-import Slide from "./Slide"
-import Typing from "./Typing"
+import { AiFillLinkedin } from "react-icons/ai";
+import { BsFillCloudArrowDownFill } from "react-icons/bs";
+import { ProfileData } from "../types";
+import MediaIcons from "./MediaIcons";
+import MyLink from "./MyLink";
+import Slide from "./Slide";
+import Typing from "./Typing";
 
 interface Props {
-  profileData: ProfileData
+  profileData: ProfileData;
 }
 
 export default function ProfileCard({ profileData }: Props) {
   return (
-    <div className="profile h-full lg:w-[42rem] xl:w-[48rem] bg-gray-900 rounded-lg relative lg:block hidden">
-      <div className="relative z-40 w-full h-full myShadow">
+    <div className="profile h-full lg:w-[42rem] xl:w-[48rem] bg-gray-900 rounded-lg relative lg:block hidden bg-opacity-20 backdrop-blur-[2px]">
+      <div className="relative z-40 w-full h-full myShadow ">
         <Slide images={profileData.bgImages} />
 
         <div className="relative z-20 w-56 h-56 mx-auto rounded-full -mt-36 profilePic">
@@ -46,5 +46,5 @@ export default function ProfileCard({ profileData }: Props) {
         </div>
       </div>
     </div>
-  )
+  );
 }

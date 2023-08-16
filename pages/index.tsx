@@ -1,43 +1,43 @@
-import type { NextPage } from "next"
-import Head from "next/head"
-import Background from "../components/Background"
-import LoaderPage from "../components/LoaderPage"
-import Menus from "../components/Menus"
-import ProfileCard from "../components/ProfileCard"
-import "react-loading-skeleton/dist/skeleton.css"
-import client, { currentMenu, currentWork, showMenu } from "../apollo-client"
-import profileOperations from "../graphqlOperations/profile"
-import { ProfileData } from "../types"
-import { useReactiveVar } from "@apollo/client"
-import { menus } from "../data"
-import { AnimatePresence, motion } from "framer-motion"
-import { useEffect, useState } from "react"
-import { Toaster } from "react-hot-toast"
-import WorkLb from "../components/worksPage/WorkLb"
-import SideMenuLb from "../components/SideMenuLb"
-import { BiMenu } from "react-icons/bi"
+import type { NextPage } from "next";
+import Head from "next/head";
+import Background from "../components/Background";
+import LoaderPage from "../components/LoaderPage";
+import Menus from "../components/Menus";
+import ProfileCard from "../components/ProfileCard";
+import "react-loading-skeleton/dist/skeleton.css";
+import client, { currentMenu, currentWork, showMenu } from "../apollo-client";
+import profileOperations from "../graphqlOperations/profile";
+import { ProfileData } from "../types";
+import { useReactiveVar } from "@apollo/client";
+import { menus } from "../data";
+import { AnimatePresence, motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import { Toaster } from "react-hot-toast";
+import WorkLb from "../components/worksPage/WorkLb";
+import SideMenuLb from "../components/SideMenuLb";
+import { BiMenu } from "react-icons/bi";
 
 interface Props {
-  profileData: ProfileData
+  profileData: ProfileData;
 }
 
 const clipPaths = [
   "polygon(0 50%, 100% 50%, 100% 50%, 0 50%)",
   "polygon(50% 0, 50% 0, 50% 100%, 50% 100%)",
-]
+];
 
 const Home: NextPage<Props> = ({ profileData }) => {
-  const menuId = useReactiveVar(currentMenu)
-  const workId = useReactiveVar(currentWork)
-  const sideMenu = useReactiveVar(showMenu)
-  const [loaderPage, setLoaderPage] = useState<boolean>(true)
+  const menuId = useReactiveVar(currentMenu);
+  const workId = useReactiveVar(currentWork);
+  const sideMenu = useReactiveVar(showMenu);
+  const [loaderPage, setLoaderPage] = useState<boolean>(true);
 
   useEffect(() => {
-    const timeoutId = setTimeout(() => setLoaderPage(false), 3500)
+    const timeoutId = setTimeout(() => setLoaderPage(false), 3500);
     return () => {
-      clearTimeout(timeoutId)
-    }
-  }, [setLoaderPage])
+      clearTimeout(timeoutId);
+    };
+  }, [setLoaderPage]);
 
   return (
     <main className="relative flex items-center justify-center min-h-screen home">
@@ -72,15 +72,15 @@ const Home: NextPage<Props> = ({ profileData }) => {
         <Menus showSideMenu={showMenu} />
         <ProfileCard profileData={profileData} />
 
-        <div className="xl:w-[70.5rem] lg:w-[66rem] w-full h-full lg:py-6">
-          <div className="relative bg-gray-900 h-full before:content-[''] before:absolute before:top-0 before:left-0 before:right-[0.7rem] before:h-6 before:bg-gray-900 before:z-30 after:content-[''] after:absolute after:bottom-0 after:left-0 after:right-[0.7rem] after:h-6 after:bg-gray-900 after:z-30">
+        <div className="xl:w-[70.5rem] lg:w-[66rem] w-full h-full lg:py-6 bg-opacity-20 backdrop-blur-xl">
+          <div className="relative h-full">
             <AnimatePresence mode="wait">
               {menus.map(
                 (m) =>
                   menuId === m.id && (
                     <motion.div
                       key={m.id}
-                      className="w-full h-full max-h-full bg-gray-900"
+                      className="w-full h-full max-h-full "
                       initial="initialState"
                       animate="animateState"
                       exit="exitState"
@@ -114,20 +114,20 @@ const Home: NextPage<Props> = ({ profileData }) => {
       </section>
       <Toaster />
     </main>
-  )
-}
+  );
+};
 
 export async function getStaticProps() {
   const { data } = await client.query({
     query: profileOperations.Queries.getProfile,
-  })
+  });
 
   return {
     props: {
       profileData: data.profiles[0],
     },
     revalidate: 3600,
-  }
+  };
 }
 
-export default Home
+export default Home;

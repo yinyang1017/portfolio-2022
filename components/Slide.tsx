@@ -1,16 +1,16 @@
-import { Swiper, SwiperSlide } from "swiper/react"
-import { Autoplay, EffectFade } from "swiper"
-import "swiper/css"
-import Image from "next/image"
-import "swiper/css/effect-fade"
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, EffectFade } from "swiper";
+import "swiper/css";
+import Image from "next/image";
+import "swiper/css/effect-fade";
 
 interface Props {
-  images: { url: string }[]
+  images: { url: string }[];
 }
 
 export default function Slide({ images }: Props) {
   return (
-    <div className="bgSlider h-[32rem] overflow-hidden rounded-lg relative before:content-[''] before:absolute before:z-20 before:-left-8 before:-right-8 before:-bottom-[6.72rem] w-auto before:h-40 before:bg-gray-900 before:rounded-tl-[100%] before:rounded-tr-[100%]">
+    <div className="bgSlider h-[32rem] overflow-hidden rounded-lg relative  w-auto ">
       <Swiper
         effect={"fade"}
         modules={[Autoplay, EffectFade]}
@@ -34,5 +34,5 @@ export default function Slide({ images }: Props) {
         ))}
       </Swiper>
     </div>
-  )
+  );
 }
