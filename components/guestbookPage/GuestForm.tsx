@@ -1,30 +1,30 @@
-import { gql, useMutation } from "@apollo/client"
-import { useState } from "react"
-import { SubmitHandler, useForm } from "react-hook-form"
-import { toast } from "react-hot-toast"
-import { AiOutlineSwapRight } from "react-icons/ai"
-import guestBookOperations from "../../graphqlOperations/guestBook"
+import { gql, useMutation } from "@apollo/client";
+import { useState } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { toast } from "react-hot-toast";
+import { AiOutlineSwapRight } from "react-icons/ai";
+import guestBookOperations from "../../graphqlOperations/guestBook";
 
 interface Inputs {
-  name: string
-  comment: string
+  name: string;
+  comment: string;
 }
 
 interface CreateComment {
   createGuestBook: {
-    id: string
-    name: string
-    comment: string
-    createdAt: string
-  }
+    id: string;
+    name: string;
+    comment: string;
+    createdAt: string;
+  };
 }
 
 export default function GuestForm() {
-  const { register, handleSubmit, reset } = useForm<Inputs>()
-  const [isChecked, setIsChecked] = useState<boolean>(false)
+  const { register, handleSubmit, reset } = useForm<Inputs>();
+  const [isChecked, setIsChecked] = useState<boolean>(false);
   const [guestName, setGuestName] = useState<string>(
     localStorage.getItem("portfolio_guestName") || ""
-  )
+  );
 
   const [createComment, { loading }] = useMutation<CreateComment, Inputs>(
     guestBookOperations.Mutations.createComment,
@@ -43,35 +43,35 @@ export default function GuestForm() {
                     createdAt
                   }
                 `,
-              })
+              });
               return {
                 ...oldValue,
                 edges: [{ node: newCommentRef }, ...oldValue.edges],
-              }
+              };
             },
           },
-        })
+        });
       },
       onCompleted({ createGuestBook }) {
         toast.success(`Thanks for your comment`, {
           duration: 5000,
-        })
-        reset({ comment: "" })
-        setIsChecked(false)
+        });
+        reset({ comment: "" });
+        setIsChecked(false);
         if (isChecked) {
-          localStorage.setItem("portfolio_guestName", createGuestBook.name)
-          setGuestName(createGuestBook.name)
+          localStorage.setItem("portfolio_guestName", createGuestBook.name);
+          setGuestName(createGuestBook.name);
         }
       },
       onError() {
-        toast.error("Server error. Try again later")
+        toast.error("Server error. Try again later");
       },
     }
-  )
+  );
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    createComment({ variables: data })
-  }
+    createComment({ variables: data });
+  };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -96,7 +96,7 @@ export default function GuestForm() {
           checked={isChecked}
           onChange={() => setIsChecked((prev) => !prev)}
         />
-        <label htmlFor="reminder" className="text-xl font-medium text-gray-600">
+        <label htmlFor="reminder" className="text-xl font-medium text-white">
           Save my name for the next time I come.
         </label>
       </fieldset>
@@ -117,5 +117,5 @@ export default function GuestForm() {
         />
       </fieldset>
     </form>
-  )
+  );
 }

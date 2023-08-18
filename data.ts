@@ -112,7 +112,7 @@ export const socialMedia: SocialMedia[] = [
     Icon: FaDiscord,
     label: "Discord",
     logoColor: "#5865f2",
-    mediaUrl: "https://discord.gg/vVk6qqs52r",
+    mediaUrl: "https://discord.gg/H4EC4wD8pA",
     info: "Let's chat on Discord.",
   }
 ]

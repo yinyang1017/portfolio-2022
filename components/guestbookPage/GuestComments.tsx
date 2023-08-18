@@ -1,21 +1,21 @@
-import { useQuery } from "@apollo/client"
-import InfiniteScroll from "react-infinite-scroll-component"
-import guestBookOperations from "../../graphqlOperations/guestBook"
-import { guestBooksConnection } from "../../types"
-import Loader from "../Loader"
-import { motion } from "framer-motion"
+import { useQuery } from "@apollo/client";
+import InfiniteScroll from "react-infinite-scroll-component";
+import guestBookOperations from "../../graphqlOperations/guestBook";
+import { guestBooksConnection } from "../../types";
+import Loader from "../Loader";
+import { motion } from "framer-motion";
 
 interface CommentsVariables {
-  after?: string
-  first: number
+  after?: string;
+  first: number;
 }
 
 interface CommentsQuery {
-  guestBooksConnection: guestBooksConnection
+  guestBooksConnection: guestBooksConnection;
 }
 
 function formateDate(d: Date) {
-  let date = new Date(d)
+  let date = new Date(d);
   let formattedDate = date.toLocaleString("en-US", {
     hour: "numeric",
     minute: "numeric",
@@ -23,9 +23,9 @@ function formateDate(d: Date) {
     year: "numeric",
     month: "long",
     day: "numeric",
-  })
+  });
 
-  return formattedDate
+  return formattedDate;
 }
 
 export default function GuestComments() {
@@ -34,17 +34,17 @@ export default function GuestComments() {
     {
       variables: { first: 10 },
     }
-  )
+  );
 
   if (error)
-    return <pre className="text-xl text-gray-500">{JSON.stringify(error)}</pre>
+    return <pre className="text-xl text-gray-500">{JSON.stringify(error)}</pre>;
 
   if (data === undefined)
     return (
       <div className="flex justify-center mt-8">
         <Loader />
       </div>
-    )
+    );
 
   return (
     <InfiniteScroll
@@ -52,7 +52,7 @@ export default function GuestComments() {
       next={() => {
         return fetchMore({
           variables: { after: data.guestBooksConnection.pageInfo.endCursor },
-        })
+        });
       }}
       hasMore={data.guestBooksConnection.pageInfo.hasNextPage}
       loader={
@@ -77,7 +77,7 @@ export default function GuestComments() {
                 {d.node.name}
               </h3>
               <time
-                className="hidden text-xl text-gray-600 sm:block"
+                className="hidden text-xl text-white sm:block"
                 dateTime="1785-12-30"
               >
                 {formateDate(d.node.createdAt)}
@@ -90,5 +90,5 @@ export default function GuestComments() {
         ))}
       </motion.ul>
     </InfiniteScroll>
-  )
+  );
 }

@@ -10,7 +10,7 @@ interface Props {
 
 export default function Slide({ images }: Props) {
   return (
-    <div className="bgSlider h-[32rem] overflow-hidden rounded-lg relative  w-auto ">
+    <div className="bgSlider h-[32rem] overflow-hidden relative  w-auto ">
       <Swiper
         effect={"fade"}
         modules={[Autoplay, EffectFade]}

@@ -72,7 +72,7 @@ const Home: NextPage<Props> = ({ profileData }) => {
         <Menus showSideMenu={showMenu} />
         <ProfileCard profileData={profileData} />
 
-        <div className="xl:w-[70.5rem] lg:w-[66rem] w-full h-full lg:py-6 bg-opacity-20 backdrop-blur-xl">
+        <div className="xl:w-[70.5rem] lg:w-[66rem] w-full h-full lg:py-6 bg-gray-900 bg-opacity-60 backdrop-blur-xl">
           <div className="relative h-full">
             <AnimatePresence mode="wait">
               {menus.map(
