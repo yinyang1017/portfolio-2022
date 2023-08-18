@@ -19,6 +19,8 @@ import {
   SiChatbot,
   SiNextdotjs,
   SiNodedotjs,
+  SiWordpress,
+  SiGamedeveloper,
 } from "react-icons/si"
 import About from "./components/aboutPage/About"
 import Blogs from "./components/blogsPage/Blogs"
@@ -160,6 +162,18 @@ export const services: ServiceData[] = [
     description:
       "Python BeautifulSoup4 and Selenium with Puppeteer",
   },
+  {
+    id:7,
+    title:'CMS Development',
+    Icon: SiWordpress,
+    description: 'Content Management System using Wordpress, WIX'
+  },
+  {
+    id: 8,
+    title:'Game Development',
+    Icon: SiGamedeveloper,
+    description:'Anime, NFT Games using Three.js and Unity'
+  }
 ]
 
 export const clients: ClientData[] = [
@@ -197,7 +211,7 @@ export const quoteData: TestimonialData = {
 export const statisticsData: StatisticsData[] = [
   {
     title: "stack",
-    info: "MERN or T3",
+    info: "MERN",
   },
   {
     title: "projects",
@@ -205,6 +219,6 @@ export const statisticsData: StatisticsData[] = [
   },
   {
     title: "clients",
-    info: "40+",
+    info: "20+",
   },
 ]

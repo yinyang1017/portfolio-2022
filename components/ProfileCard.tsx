@@ -1,8 +1,8 @@
-import { AiFillLinkedin } from "react-icons/ai";
-import { BsFillCloudArrowDownFill } from "react-icons/bs";
+// import { AiFillLinkedin } from "react-icons/ai";
+// import { BsFillCloudArrowDownFill } from "react-icons/bs";
 import { ProfileData } from "../types";
 import MediaIcons from "./MediaIcons";
-import MyLink from "./MyLink";
+// import MyLink from "./MyLink";
 import Slide from "./Slide";
 import Typing from "./Typing";
 
@@ -31,7 +31,7 @@ export default function ProfileCard({ profileData }: Props) {
         <Typing />
         <MediaIcons />
 
-        <div className="absolute bottom-0 left-0 flex w-full h-28 borderLeft customLine">
+        {/* <div className="absolute bottom-0 left-0 flex w-full h-28 borderLeft customLine">
           <MyLink
             name="download cv"
             Icon={BsFillCloudArrowDownFill}
@@ -43,7 +43,7 @@ export default function ProfileCard({ profileData }: Props) {
             Icon={AiFillLinkedin}
             url="https://www.linkedin.com/in/arafat-freelancer"
           />
-        </div>
+        </div> */}
       </div>
     </div>
   );
