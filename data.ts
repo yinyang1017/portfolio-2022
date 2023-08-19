@@ -1,14 +1,13 @@
 import { AiFillLinkedin, AiOutlineGithub } from "react-icons/ai"
 import {
-  FaDev,
   FaDiscord,
   FaEye,
-  FaFacebookF,
   FaRegListAlt,
-  FaRegNewspaper,
+  FaSlack,
   FaSkype,
   FaTelegram,
   FaRegUser,
+  FaGithub,
 } from "react-icons/fa"
 import { FiSend } from "react-icons/fi"
 import { MdComputer, MdDashboard } from "react-icons/md"
@@ -84,38 +83,29 @@ export const menus: MenuData[] = [
   },
 ]
 
-export const socialMedia: SocialMedia[] = [
+export const socialMediaIcons: SocialMedia[] = [
   {
-    id: 2,
+    label: 'Telegram',
     Icon: FaTelegram,
-    label: "Telegram",
-    logoColor: "#3b5998",
-    mediaUrl: "https://t.me/x2creation",
-    info: "Chat with me on Telegram",
+    
   },
   {
-    id: 3,
-    Icon: AiOutlineGithub,
-    label: "Github",
-    logoColor: "#171515",
-    mediaUrl: "https://www.github.com/yinyangwarrior",
-    info: "Star my projects on Github",
+    label: 'Github',
+    Icon: FaGithub,
+    
   },
   {
-    id: 4,
+    label: 'Skype',
     Icon: FaSkype,
-    label: "Skype",
-    logoColor: "#0072b1",
-    mediaUrl: "https://join.skype.com/qUdyrGozIvWe",
-    info: "Let's connect on Skype",
+    
   },
   {
-    id: 5,
+    label: 'Discord',
     Icon: FaDiscord,
-    label: "Discord",
-    logoColor: "#5865f2",
-    mediaUrl: "https://discord.gg/H4EC4wD8pA",
-    info: "Let's chat on Discord.",
+  },
+  {
+    label: 'Slack',
+    Icon: FaSlack
   }
 ]
 

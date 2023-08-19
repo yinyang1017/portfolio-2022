@@ -1,6 +1,6 @@
 import { gql } from "@apollo/client"
 
-export default {
+const query =  {
   Queries: {
     getProfile: gql`
       query GetProfile {
@@ -17,7 +17,16 @@ export default {
         }
       }
     `,
-
+    getSocial: gql`
+    query GetSocial {
+      socials {
+        label
+        logoColor
+        mediaUrl
+        description
+      }
+    }
+    `,
     getNameImage: gql`
       query GetProfile {
         profiles {
@@ -79,3 +88,4 @@ export default {
     `,
   },
 }
+export default query;

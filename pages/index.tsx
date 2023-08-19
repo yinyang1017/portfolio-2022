@@ -7,7 +7,7 @@ import ProfileCard from "../components/ProfileCard";
 import "react-loading-skeleton/dist/skeleton.css";
 import client, { currentMenu, currentWork, showMenu } from "../apollo-client";
 import profileOperations from "../graphqlOperations/profile";
-import { ProfileData } from "../types";
+import { Link, ProfileData } from "../types";
 import { useReactiveVar } from "@apollo/client";
 import { menus } from "../data";
 import { AnimatePresence, motion } from "framer-motion";
@@ -19,6 +19,7 @@ import { BiMenu } from "react-icons/bi";
 
 interface Props {
   profileData: ProfileData;
+  links: Link[];
 }
 
 const clipPaths = [
@@ -26,7 +27,7 @@ const clipPaths = [
   "polygon(50% 0, 50% 0, 50% 100%, 50% 100%)",
 ];
 
-const Home: NextPage<Props> = ({ profileData }) => {
+const Home: NextPage<Props> = ({ profileData, links }) => {
   const menuId = useReactiveVar(currentMenu);
   const workId = useReactiveVar(currentWork);
   const sideMenu = useReactiveVar(showMenu);
@@ -57,6 +58,7 @@ const Home: NextPage<Props> = ({ profileData }) => {
 
       <SideMenuLb
         profile={profileData}
+        links={links}
         sideMenu={sideMenu}
         showMenu={showMenu}
       />
@@ -70,7 +72,7 @@ const Home: NextPage<Props> = ({ profileData }) => {
 
       <section className="z-10 w-full h-full lg:w-[115rem] xl:w-[126.8rem] lg:h-[62.5rem] lg:flex p-10 sm:p-24 lg:p-0">
         <Menus showSideMenu={showMenu} />
-        <ProfileCard profileData={profileData} />
+        <ProfileCard profileData={profileData} links={links} />
 
         <div className="xl:w-[70.5rem] lg:w-[66rem] w-full h-full lg:py-6 bg-gray-900 bg-opacity-60 backdrop-blur-xl">
           <div className="relative h-full">
@@ -121,10 +123,14 @@ export async function getStaticProps() {
   const { data } = await client.query({
     query: profileOperations.Queries.getProfile,
   });
+  const { data: links } = await client.query({
+    query: profileOperations.Queries.getSocial,
+  });
 
   return {
     props: {
       profileData: data.profiles[0],
+      links: links.socials,
     },
     revalidate: 3600,
   };

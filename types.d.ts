@@ -1,4 +1,6 @@
+import { ReactNode } from "react"
 import { IconType } from "react-icons"
+import { ReactElement } from "react-markdown/lib/react-markdown"
 
 interface ProfileData {
   id: string
@@ -6,6 +8,12 @@ interface ProfileData {
   name: string
   ownersPhoto: { url: string }
   bgImages: { url: string }[]
+}
+interface Link {
+  label: string
+  logoColor: string
+  mediaUrl: string
+  description: string
 }
 
 interface partOfProfile {
@@ -143,11 +151,7 @@ interface StatisticsData {
 }
 
 interface SocialMedia {
-  id: number
   label: string
-  mediaUrl: string
-  logoColor: string
-  info: string
   Icon: IconType
 }
 

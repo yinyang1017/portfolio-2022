@@ -8,19 +8,25 @@ import {
   useEffect,
 } from "react";
 import { IoMdClose } from "react-icons/io";
-import { menus, socialMedia } from "../data";
+import { menus, socialMediaIcons } from "../data";
 import SideMenuBtn from "./SideMenuBtn";
 import profileOperations from "../graphqlOperations/profile";
-import { partOfProfile, ProfileData } from "../types";
+import { Link, partOfProfile, ProfileData } from "../types";
 import { currentMenu } from "../apollo-client";
 
 interface Props {
   sideMenu: boolean;
   showMenu: ReactiveVar<boolean>;
   profile: ProfileData;
+  links: Link[];
 }
 
-export default function SideMenuLb({ sideMenu, showMenu, profile }: Props) {
+export default function SideMenuLb({
+  sideMenu,
+  showMenu,
+  profile,
+  links,
+}: Props) {
   const menuId = useReactiveVar(currentMenu);
 
   function closeLb(e: MouseEvent): void {
@@ -59,17 +65,18 @@ export default function SideMenuLb({ sideMenu, showMenu, profile }: Props) {
           </div>
 
           <div className="flex gap-x-5 items-center justify-center">
-            {socialMedia.map(({ id, Icon, label, mediaUrl }) => (
-              <a
-                rel="noreferrer"
-                href={mediaUrl}
-                className="tooltip tooltip-bottom"
-                data-tip={label}
-                key={id}
-              >
-                <Icon className="text-gray-400 text-2xl transition-all duration-300 hover:text-main-orange" />
-              </a>
-            ))}
+            {links.map((el: Link, id: number) => {
+              const Icon =
+                socialMediaIcons.find((e) => el.label === e.label)?.Icon ||
+                null;
+              return (
+                <a rel="noreferrer" href={el.mediaUrl} target="_blank" key={id}>
+                  {Icon && (
+                    <Icon className="text-gray-300 text-3xl h-10 w-10  transition-all duration-300 hover:text-main-orange cursor-pointer" />
+                  )}
+                </a>
+              );
+            })}
           </div>
         </div>
 
