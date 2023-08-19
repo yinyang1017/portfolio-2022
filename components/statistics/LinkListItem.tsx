@@ -1,22 +1,27 @@
-import { BiLinkExternal } from "react-icons/bi"
-import { SocialMedia } from "../../types"
+import { BiLinkExternal } from "react-icons/bi";
+import { Link } from "../../types";
+import { socialMediaIcons } from "../../data";
 
 interface Props {
-  socialMedia: SocialMedia
+  socialMedia: Link;
 }
 
 export default function LinkListItem({ socialMedia }: Props) {
+  const Icon =
+    socialMediaIcons.find((e) => socialMedia.label === e.label)?.Icon || null;
   return (
     <li className="relative flex items-center px-6 py-5 bg-gray-800 shadow-lg rounded-xl gap-x-6 group">
       <div
         className={`flex items-center justify-center w-20 min-w-[5rem] h-20 border-2 border-gray-700 border-solid rounded-lg group`}
       >
-        <socialMedia.Icon
-          style={{
-            color: socialMedia.logoColor,
-          }}
-          className={`text-5xl`}
-        />
+        {Icon && (
+          <Icon
+            style={{
+              color: socialMedia.logoColor,
+            }}
+            className={`text-5xl`}
+          />
+        )}
       </div>
 
       <div>
@@ -29,7 +34,7 @@ export default function LinkListItem({ socialMedia }: Props) {
           {socialMedia.label}
         </a>
         <p className="text-[1.3rem] font-medium text-gray-400">
-          {socialMedia.info}
+          {socialMedia.description}
         </p>
       </div>
 
@@ -42,5 +47,5 @@ export default function LinkListItem({ socialMedia }: Props) {
         <BiLinkExternal className="text-3xl text-white" />
       </a>
     </li>
-  )
+  );
 }

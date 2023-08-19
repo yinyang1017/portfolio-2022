@@ -1,16 +1,18 @@
-import { useEffect, useState } from "react";
-import { socialMedia, statisticsData } from "../../data";
+import { useContext, useEffect, useState } from "react";
+import { statisticsData } from "../../data";
 import Title from "../Title";
 import LinkListItem from "./LinkListItem";
 import Statistic from "./Statistic";
+import { Link } from "../../types";
+import { LinkContext } from "../../context/links";
 
 async function fetchData(url: string) {
   const response = await fetch(url);
   const data = await response.json();
   return data;
 }
-
 export default function Stats() {
+  const { links } = useContext(LinkContext);
   const [pageViews, setPageViews] = useState<number>(0);
   const [totalArticles, setTotalArticles] = useState<number>(0);
   const [articleReactions, setArticleReactions] = useState<number>(0);
@@ -62,8 +64,8 @@ export default function Stats() {
 
       <Title name="links" />
       <ul className="px-12 py-8 mb-8 space-y-6">
-        {socialMedia.map((sm) => (
-          <LinkListItem key={sm.id} socialMedia={sm} />
+        {links.map((sm: Link, index: number) => (
+          <LinkListItem key={index} socialMedia={sm} />
         ))}
       </ul>
     </section>
