@@ -15,6 +15,13 @@ interface Link {
   mediaUrl: string
   description: string
 }
+interface Address{
+  address: string
+  map:string
+  job:string
+  email: string
+  phone: string
+}
 
 interface partOfProfile {
   name: string

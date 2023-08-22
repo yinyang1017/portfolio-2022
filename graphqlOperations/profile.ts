@@ -27,6 +27,17 @@ const query =  {
       }
     }
     `,
+    getAddress: gql`
+    query GetAddress {
+      addresses {
+        job
+        phone
+        map
+        email
+        address
+      }
+    }
+    `,
     getNameImage: gql`
       query GetProfile {
         profiles {
