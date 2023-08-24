@@ -4,6 +4,8 @@ import profileOperations from "../../graphqlOperations/profile";
 import AboutMeSkeleton from "./AboutMeSkeleton";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import { useContext } from "react";
+import { AddressContext } from "../../context/address";
 
 interface GetUserBio {
   profiles: [{ bio: string }];
@@ -13,6 +15,7 @@ export default function AboutMe() {
   const { loading, error, data } = useQuery<GetUserBio>(
     profileOperations.Queries.getBio
   );
+  const { address } = useContext(AddressContext);
 
   if (error) {
     console.log(error);
@@ -31,9 +34,9 @@ export default function AboutMe() {
 
       <ul className="location grid grid-cols-1 sm:grid-cols-2 mt-6 gap-y-2">
         <MyInfo field="age" value="23" />
-        <MyInfo field="residence" value="Hong Kong" />
-        <MyInfo field="freelance" value="Available" />
-        <MyInfo field="address" value="Wan Chai, Hong Kong" />
+        <MyInfo field="nationality" value={"Hong Kong"} />
+        <MyInfo field="freelance" value={address.job} />
+        <MyInfo field="address" value={address.address} />
       </ul>
     </div>
   );
