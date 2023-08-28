@@ -1,49 +1,49 @@
-import { useQuery } from "@apollo/client"
-import { useMemo, useState } from "react"
-import Title from "../Title"
-import Work from "./Work"
-import workOperations from "../../graphqlOperations/work"
-import { WorksConnectionData } from "../../types"
-import WorksSkeleton from "./WorksSkeleton"
-import { currentWorkTab } from "../../apollo-client"
-import { useReactiveVar } from "@apollo/client"
-import InfiniteScroll from "react-infinite-scroll-component"
-import Loader from "../Loader"
-import { motion, AnimatePresence } from "framer-motion"
+import { useQuery } from "@apollo/client";
+import { useMemo, useState } from "react";
+import Title from "../Title";
+import Work from "./Work";
+import workOperations from "../../graphqlOperations/work";
+import { WorksConnectionData } from "../../types";
+import WorksSkeleton from "./WorksSkeleton";
+import { currentWorkTab } from "../../apollo-client";
+import { useReactiveVar } from "@apollo/client";
+import InfiniteScroll from "react-infinite-scroll-component";
+import Loader from "../Loader";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface WorksQuery {
-  worksConnection: WorksConnectionData
+  worksConnection: WorksConnectionData;
 }
 
 interface WorksVariables {
-  after?: string
-  first: number
+  after?: string;
+  first: number;
 }
 
 export default function Works() {
-  const currentTab = useReactiveVar(currentWorkTab)
-  const [isOpen, setIsOpen] = useState<string | null>(null)
+  const currentTab = useReactiveVar(currentWorkTab);
+  const [isOpen, setIsOpen] = useState<string | null>(null);
   const {
     data: worksData,
     error: worksError,
     fetchMore,
   } = useQuery<WorksQuery, WorksVariables>(workOperations.Queries.getWorks, {
-    variables: { first: 6 },
-  })
+    variables: { first: 100 },
+  });
 
   const filteredWorks = useMemo(() => {
-    if (worksData === undefined) return
+    if (worksData === undefined) return;
     return worksData.worksConnection.edges.filter((w) =>
       w.node.workTabs.some((t) => t.tab === currentTab)
-    )
-  }, [worksData, currentTab])
+    );
+  }, [worksData, currentTab]);
 
   if (worksError) {
-    console.log(worksError.toString())
-    return <WorksSkeleton />
+    console.log(worksError.toString());
+    return <WorksSkeleton />;
   }
 
-  if (worksData === undefined) return <WorksSkeleton />
+  if (worksData === undefined) return <WorksSkeleton />;
 
   return (
     <div
@@ -57,7 +57,7 @@ export default function Works() {
         next={() => {
           return fetchMore({
             variables: { after: worksData.worksConnection.pageInfo.endCursor },
-          })
+          });
         }}
         hasMore={worksData.worksConnection.pageInfo.hasNextPage}
         loader={
@@ -85,5 +85,5 @@ export default function Works() {
         </motion.ul>
       </InfiniteScroll>
     </div>
-  )
+  );
 }
