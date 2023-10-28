@@ -34,7 +34,7 @@ export default function AboutMe() {
 
       <ul className="location grid grid-cols-1 sm:grid-cols-2 mt-6 gap-y-2">
         <MyInfo field="age" value="23" />
-        <MyInfo field="nationality" value={"Hong Kong"} />
+        <MyInfo field="nationality" value={"Japanese"} />
         <MyInfo field="freelance" value={address.job} />
         <MyInfo field="address" value={address.address} />
       </ul>

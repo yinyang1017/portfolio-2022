@@ -8,6 +8,7 @@ import {
   FaTelegram,
   FaRegUser,
   FaGithub,
+  FaWhatsapp,
 } from "react-icons/fa"
 import { FiSend } from "react-icons/fi"
 import { MdComputer, MdDashboard } from "react-icons/md"
@@ -93,6 +94,10 @@ export const socialMediaIcons: SocialMedia[] = [
     label: 'Github',
     Icon: FaGithub,
     
+  },
+  {
+    label: 'Whatsapp',
+    Icon: FaWhatsapp,
   },
   {
     label: 'Skype',

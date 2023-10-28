@@ -34,10 +34,9 @@ export default function Works() {
   const filteredWorks = useMemo(() => {
     if (worksData === undefined) return;
     return worksData.worksConnection.edges.filter((w) =>
-      w.node.workTabs.some((t) => t.tab === currentTab)
+      w.node.workTabs.some((t) => currentTab==='All' || t.tab === currentTab)
     );
   }, [worksData, currentTab]);
-
   if (worksError) {
     console.log(worksError.toString());
     return <WorksSkeleton />;
